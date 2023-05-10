@@ -1,0 +1,17 @@
+{% extends  'base.html' %}
+
+{% block content %}
+
+{% for appartment in appartments %}
+
+<div class="px-3 py-2 bg-gray-100 rounded-sm">
+ <h3 class="text- 3xl text-gray 900">{{ appartment.title }}</h3>
+   <a href="/appartments/{{appartment.id}}/" class="text-blue-500">
+     view details
+ </a>
+</div>
+
+{% endfor %}
+
+{% endblock content %}
+
