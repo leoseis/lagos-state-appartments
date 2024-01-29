@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
@@ -15,6 +17,5 @@ urlpatterns = [
     path('appartments/<pk>/', Appartment_retrieve),
     path('appartments/<pk>/edit/', Appartment_update),
     path('appartment/<pk>/delete/', Appartment_delete),
-    path('add-appartment/', Appartment_create)
-    
-]
+    path('add-appartment/', Appartment_create)   
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
