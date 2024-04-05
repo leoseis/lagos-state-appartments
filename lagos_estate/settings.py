@@ -76,8 +76,11 @@ WSGI_APPLICATION = 'lagos_estate.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':  'new_estate',
+        'USER': 'postgres',
+        'PASSWORD': 'sparkle1',
+        'HOST': 'localhost'
     }
 }
 
