@@ -1,17 +1,30 @@
-{% extends  'base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
+<div class="min-h-screen bg-gradient-to-r from-purple-100 via-blue-100 to-pink-100 py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-10">
+      Featured Apartments
+    </h2>
 
-{% for appartment in appartments %}
-
-<div class="px-3 py-2 bg-gray-100 rounded-sm">
- <h3 class="text- 3xl text-gray 900">{{ appartment.title }}</h3>
-   <a href="/appartments/{{appartment.id}}/" class="text-blue-500">
-     view details
- </a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for appartment in appartments %}
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-indigo-700 mb-3">
+              {{ appartment.title }}
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Discover more about this apartment in our detailed view.
+            </p>
+            <a href="/appartments/{{ appartment.id }}/"
+               class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
+              View Details →
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
-
-{% endfor %}
-
 {% endblock content %}
-
