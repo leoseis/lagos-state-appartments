@@ -1,27 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="max-w-3xl mx-auto my-10 bg-white shadow-lg rounded-xl overflow-hidden">
+    <div class="p-6">
+        <h3 class="text-3xl font-bold text-gray-900 mb-2">{{ appartment.title }}</h3>
+        <p class="text-xl text-green-600 font-semibold mb-1">${{ appartment.price }}</p>
+        <p class="text-sm text-gray-500 mb-4">{{ appartment.address }}</p>
 
-<div class="px-3 py-2 bg-gray-100 rounded-sm">
-    <h3 class="text-3xl text-gray 900">{{ appartment.title }}</h3>
-    <p class="text gray-500">${{ appartment.price }}</p>
-   <p class="text gray-600 text-sm"> {{ appartment.address }}</p>
-   <div>
-    <img src="{{ appartment.image.url }}" class="rounded-xl">
+        <div class="mb-4">
+            <img src="{{ appartment.image.url }}" alt="Apartment Image" class="w-full h-auto rounded-xl">
+        </div>
+
+        <!-- Optional: raw image field, can be removed -->
+        <!-- <p class="text-xs text-gray-400">{{ appartment.image }}</p> -->
+
+        {% if request.user.is_staff %}
+        <div class="mt-6 pt-4 border-t border-gray-200 flex space-x-4">
+            <a href="/appartments/{{ appartment.id }}/edit"
+               class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
+                Edit
+            </a>
+            <a href="/appartments/{{ appartment.id }}/delete"
+               class="inline-block bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition">
+                Delete
+            </a>
+        </div>
+        {% endif %}
+    </div>
 </div>
-{{ appartment.image }}
-
-    {% if request.user.is_staff %}
-<div class="mt-5 py-5 border-t border-grey-200">
-   <a href="/appartments/{{appartment.id}}/edit" class="text-blue-500">
-        Edit
-    </a>
-    <a href="/appartments/{{appartment.id}}/delete"class="ml-3 text-blue-500">
-        Delete
-    </a>
- </div>
- {% endif %}
-
-</div>
-
 {% endblock %}

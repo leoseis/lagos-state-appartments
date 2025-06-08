@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lagos Estate</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS CDN (for simplicity, or use via npm for production) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Alpine.js for interactivity -->
+<script src="https://unpkg.com/alpinejs" defer></script>
+
+<!-- Heroicons (for icons like edit/delete/contact) -->
+<script src="https://unpkg.com/feather-icons"></script>
+
 </head>
 <body>
     <div class="space-x-6">
@@ -21,5 +30,9 @@
     {% block content %}
     {% endblock content %}
  </div>
+ <script>
+  feather.replace();
+</script>
+
 </body>
 </html>
