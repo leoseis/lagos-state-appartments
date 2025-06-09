@@ -1,24 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="min-h-screen bg-gradient-to-r from-purple-100 via-blue-100 to-pink-100 py-12">
-  <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-10">
+<div class="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-pink-100 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Page Title -->
+    <h2 class="text-4xl font-extrabold text-gray-800 text-center mb-12">
       Featured Apartments
     </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Responsive Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
       {% for appartment in appartments %}
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-indigo-700 mb-3">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col hover:shadow-2xl transition duration-300">
+          
+          <!-- Image -->
+          {% if appartment.cover_image %}
+          <img src="{{ appartment.cover_image.url }}" alt="{{ appartment.title }}"
+               class="w-full h-60 object-cover">
+          {% endif %}
+
+          <!-- Details -->
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-2xl font-semibold text-indigo-800 mb-2">
               {{ appartment.title }}
             </h3>
-            <p class="text-gray-600 mb-4">
-              Discover more about this apartment in our detailed view.
+            <p class="text-gray-600 text-sm mb-4 flex-grow">
+              Address: {{ appartment.address }} <br>
+              Price: ${{ appartment.price }}
             </p>
             <a href="/appartments/{{ appartment.id }}/"
-               class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300">
+               class="inline-block text-center bg-indigo-600 text-white px-5 py-2 mt-auto rounded-lg hover:bg-indigo-700 transition duration-300">
               View Details →
             </a>
           </div>
