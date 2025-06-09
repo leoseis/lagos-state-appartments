@@ -1,31 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="max-w-3xl mx-auto my-10 bg-white shadow-lg rounded-xl overflow-hidden">
-    <div class="p-6">
-        <h3 class="text-3xl font-bold text-gray-900 mb-2">{{ appartment.title }}</h3>
-        <p class="text-xl text-green-600 font-semibold mb-1">${{ appartment.price }}</p>
-        <p class="text-sm text-gray-500 mb-4">{{ appartment.address }}</p>
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-md mt-10">
 
-        <div class="mb-4">
-            <img src="{{ appartment.image.url }}" alt="Apartment Image" class="w-full h-auto rounded-xl">
-        </div>
+    <!-- Apartment Title -->
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ appartment.title }}</h1>
 
-        <!-- Optional: raw image field, can be removed -->
-        <!-- <p class="text-xs text-gray-400">{{ appartment.image }}</p> -->
+    <!-- Cover Image -->
+    {% if appartment.cover_image %}
+    <img src="{{ appartment.cover_image.url }}" alt="Cover Image" class="w-full h-96 object-cover rounded-xl mb-4">
+    {% endif %}
 
-        {% if request.user.is_staff %}
-        <div class="mt-6 pt-4 border-t border-gray-200 flex space-x-4">
-            <a href="/appartments/{{ appartment.id }}/edit"
-               class="inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
-                Edit
-            </a>
-            <a href="/appartments/{{ appartment.id }}/delete"
-               class="inline-block bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition">
-                Delete
-            </a>
-        </div>
-        {% endif %}
+    <!-- Price and Address -->
+    <p class="text-green-600 text-xl font-semibold mb-1">${{ appartment.price }}</p>
+    <p class="text-gray-500 mb-4">{{ appartment.address }}</p>
+
+    <!-- Gallery Images -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
+        {% for image in appartment.gallery_images.all %}
+        <img src="{{ image.image.url }}" alt="Gallery Image" class="rounded-lg object-cover h-48 w-full">
+        {% endfor %}
     </div>
+
 </div>
 {% endblock %}
